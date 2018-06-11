@@ -78,12 +78,11 @@ articleView.setTeasers = () => {
 
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
+
+// This function is called on the new article html page only, the reason for this is because it need's to stay seperated from the index html file. If it was called on the index html file, anybody that visits the site would be able to see it and create a new article. On the opposite end, you would not call the initIndex function on the new article html page because it would generate all of the articles that are only supposed to be on the forward facing page.
+
 articleView.initNewArticlePage = () => {
   // TODO: Ensure the main .tab-content area is revealed. We might add more tabs later or otherwise edit the tab navigation.
-
-
-  // TODO: The new articles we create will be copy/pasted into our source data file.
-  // Set up this "export" functionality. We can hide it for now, and show it once we have data to export.
 
   $('#article-json').on('focus', function(){
     this.select();
@@ -102,7 +101,8 @@ articleView.create = () => {
   // DONE: Instantiate an article based on what's in the form fields:
   $('#articles').empty();
 
-  article = new Article({
+
+  article = new Article ({
     title: $('#article-title').val(),
     author: $('#article-author').val(),
     authorUrl: $('#article-author-url').val(),
@@ -123,6 +123,9 @@ articleView.create = () => {
 
 // COMMENT: Where is this function called? Why?
 // PUT YOUR RESPONSE HERE
+
+// This function is called on the index html page, the reason it is called there is because this function will render all of the articles to the page, we do not want the new html page to do that, so we keep them seperate.
+
 articleView.initIndexPage = () => {
   articles.forEach(article => $('#articles').append(article.toHtml()));
   articleView.populateFilters();
